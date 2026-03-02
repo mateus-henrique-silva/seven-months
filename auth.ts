@@ -19,6 +19,7 @@ const USERS = [
 ];
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "seven-months-secret-key-hardcoded-2025",
   providers: [
     Credentials({
       name: "credentials",
