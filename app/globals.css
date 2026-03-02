@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: "Playfair Display", serif;
+  --font-nunito: "Nunito", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-nunito);
+  background: linear-gradient(135deg, #fff0f5 0%, #ffd6e7 30%, #fff0f5 60%, #ffe4ec 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #3d1a24;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fff0f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffb3c6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff8fab;
+}
+
+/* Timeline */
+.timeline-container {
+  position: relative;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #ffb3c6, #ff8fab, #ffb3c6);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 24px;
+  }
+}
+
+/* Floating hearts animation */
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.2);
+  }
+}
+
+.float-heart {
+  animation: floatHeart 2.5s ease-out forwards;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 179, 198, 0.3);
+}
+
+/* Pink gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #e5637c, #ff4777, #e5637c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Soft shadow */
+.soft-shadow {
+  box-shadow: 0 4px 24px rgba(229, 99, 124, 0.1), 0 1px 4px rgba(229, 99, 124, 0.06);
+}
+
+.soft-shadow-hover:hover {
+  box-shadow: 0 8px 32px rgba(229, 99, 124, 0.2), 0 2px 8px rgba(229, 99, 124, 0.1);
+}
+
+/* Font classes */
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+.font-nunito {
+  font-family: var(--font-nunito);
+}
