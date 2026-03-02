@@ -2,10 +2,14 @@ import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { messages } from "@/lib/schema";
 import { Resend } from "resend";
-import { asc, desc, eq, or } from "drizzle-orm";
+import { desc, eq, or } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key || key === "re_sua_chave_aqui") return null;
+  return new Resend(key);
+}
 
 const USERS: Record<string, string> = {
   "magtash68@gmail.com": "Mateus",
@@ -74,7 +78,8 @@ export async function POST(req: NextRequest) {
 
     // Send email notification
     try {
-      if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== "re_sua_chave_aqui") {
+      const resend = getResend();
+      if (resend) {
         await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL ?? "noreply@resend.dev",
           to: [toEmail],
