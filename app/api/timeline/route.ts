@@ -19,7 +19,8 @@ export async function GET() {
     return NextResponse.json(events);
   } catch (error) {
     console.error("Error fetching timeline:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    const msg = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: "Internal server error", detail: msg }, { status: 500 });
   }
 }
 
